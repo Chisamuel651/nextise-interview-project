@@ -6,6 +6,7 @@ interface HeaderProps {
   onSignOut: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const onSignOut = () => {
   console.log('signed out')
 };
