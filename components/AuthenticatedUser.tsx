@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
