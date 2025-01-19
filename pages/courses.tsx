@@ -1,3 +1,4 @@
+import AuthenticatedUser from "@/components/AuthenticatedUser";
 import Header from "../components/Header";
 
 const sampleCourses = [
@@ -47,7 +48,7 @@ const sampleTrainers = [
   },
 ];
 
-export default function Courses() {
+function Courses() {
   return (
     <div>
       <Header user="John Doe" onSignOut={() => {}} />
@@ -119,3 +120,5 @@ export default function Courses() {
     </div>
   );
 }
+
+export default AuthenticatedUser(Courses);

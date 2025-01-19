@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -39,6 +41,7 @@ export default function Login() {
             Login
           </button>
         </form>
+        <span className='mt-5 text-sm pt-4'>Don't have an account ? <Link className='text-blue-500' href='/signup'>Sign Up</Link></span> 
       </div>
     </div>
   );

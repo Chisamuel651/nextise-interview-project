@@ -1,8 +1,9 @@
+import AuthenticatedUser from "@/components/AuthenticatedUser";
 import Header from "../components/Header";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Home() {
+function Home() {
   const [stats] = useState({
     totalCourses: 5,
     totalTrainers: 12,
@@ -66,3 +67,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default AuthenticatedUser(Home);

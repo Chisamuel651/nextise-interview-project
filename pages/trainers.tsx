@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import AuthenticatedUser from "@/components/AuthenticatedUser";
 
-export default function Trainers() {
+function Trainers() {
   const [trainers] = useState([
     {
       id: "1",
@@ -81,3 +82,5 @@ export default function Trainers() {
     </div>
   );
 }
+
+export default AuthenticatedUser(Trainers);
