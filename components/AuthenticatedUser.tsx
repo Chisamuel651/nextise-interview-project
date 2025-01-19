@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
-const AuthenticatedUser = (WrappedComponent: React.ComponentType) => {
+const AuthenticatedUser = (WrappedComponent: React.ComponentType<any>) => {
     const ProtectedComponent = (props: any) => {
         const router = useRouter();
 
