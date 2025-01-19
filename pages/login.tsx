@@ -41,7 +41,7 @@ export default function Login() {
             Login
           </button>
         </form>
-        <span className='mt-5 text-sm pt-4'>Don't have an account ? <Link className='text-blue-500' href='/signup'>Sign Up</Link></span> 
+        <span className='mt-5 text-sm pt-4'>Do not have an account ? <Link className='text-blue-500' href='/signup'>Sign Up</Link></span> 
       </div>
     </div>
   );
