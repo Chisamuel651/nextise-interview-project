@@ -9,6 +9,7 @@ export const coursesTable = pgTable('courses', {
     name: varchar('name', {length: 255}).notNull(),
     date: timestamp('date', {mode: 'string'}).notNull(),
     subject: varchar('subject', {length: 255}).notNull(),
+    location: varchar('location', { length: 255 }).notNull(),
     participants: integer('participants').notNull().default(0),
     notes: text('notes'),
     price: numeric('price', {precision: 10, scale: 2}).notNull(),

@@ -15,6 +15,13 @@
       "when": 1737236697710,
       "tag": "0001_bouncy_vargas",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1737335921988,
+      "tag": "0002_pale_karnak",
+      "breakpoints": true
     }
   ]
 }

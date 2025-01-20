@@ -2,8 +2,10 @@ import AuthenticatedUser from "@/components/AuthenticatedUser";
 import Header from "../components/Header";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function Home() {
+  const router = useRouter();
   const [stats] = useState({
     totalCourses: 5,
     totalTrainers: 12,
@@ -15,7 +17,10 @@ function Home() {
 
   const handleSignOut = () => {
     // Add sign-out logic here
-    console.log("User signed out");
+    localStorage.removeItem('token');
+    document.cookie = 'token=; Max-Age=0; path=/;';
+
+    router.push('/signup');
   };
 
   return (

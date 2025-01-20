@@ -1,17 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import AuthenticatedUser from "@/components/AuthenticatedUser";
+import CreateTrainerForm from "./forms/CreateTrainerForm";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 function Trainers() {
-  const [trainers] = useState([
-    {
-      id: "1",
-      trainerName: "Jane Doe",
-      trainerSubjects: ["React.js", "Next.js"],
-      trainerLocation: "Stuttgart, Germany",
-      trainerEmail: "jane.doe@example.com",
-    },
-  ]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [trainers, setTrainers] = useState([]);
+
+  const fetchTrainers = async () => {
+    try {
+      const response = await fetch('/api/trainer');
+      const data = await response.json();
+
+      if (data.success) {
+        setTrainers(data.data);
+      } else {
+        console.error('Failed to fetch trainers', data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching trainers', error);
+
+    }
+  };
+
+  useEffect(() => {
+    fetchTrainers()
+  }, []);
+  // const [trainers] = useState([
+  //   {
+  //     id: "1",
+  //     trainerName: "Jane Doe",
+  //     trainerSubjects: ["React.js", "Next.js"],
+  //     trainerLocation: "Stuttgart, Germany",
+  //     trainerEmail: "jane.doe@example.com",
+  //   },
+  // ]);
 
   const user = "John Doe"; // Replace with actual user logic
 
@@ -20,14 +45,16 @@ function Trainers() {
     console.log("User signed out");
   };
 
+  const handleTrainerCreated = () => {
+    setIsDialogOpen(false);
+    fetchTrainers();
+  }
+
   return (
     <div>
       <Header user={user} onSignOut={handleSignOut} />
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">Trainers</h1>
-        <button className="bg-green-500 text-white px-4 py-2 rounded mb-4">
-          Create Trainer
-        </button>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <thead>
@@ -50,19 +77,21 @@ function Trainers() {
               </tr>
             </thead>
             <tbody>
-              {trainers.map((trainer) => (
+              {trainers.map((trainer: any) => (
                 <tr key={trainer.id} className="border-b">
-                  <td className="py-3 px-4">{trainer.trainerName}</td>
+                  <td className="py-3 px-4">{trainer.name}</td>
                   <td className="py-3 px-4">
-                    {trainer.trainerSubjects.join(", ")}
+                    {trainer.trainingSubjects && Array.isArray(trainer.trainingSubjects)
+                      ? trainer.trainingSubjects.join(", ")
+                      : "No subjects"}
                   </td>
-                  <td className="py-3 px-4">{trainer.trainerLocation}</td>
+                  <td className="py-3 px-4">{trainer.location}</td>
                   <td className="py-3 px-4">
                     <a
-                      href={`mailto:${trainer.trainerEmail}`}
+                      href={`mailto:${trainer.email}`}
                       className="text-blue-500 hover:underline"
                     >
-                      {trainer.trainerEmail}
+                      {trainer.email}
                     </a>
                   </td>
                   <td className="py-3 px-4 flex space-x-2">
@@ -77,6 +106,25 @@ function Trainers() {
               ))}
             </tbody>
           </table>
+
+          <div className="mt-8 flex justify-end">
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button>Create New Trainer</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px] bg-white">
+                <div>
+                  <DialogHeader>
+                    <DialogTitle>Create a New Trainer</DialogTitle>
+                    <DialogDescription>
+                      Fill in the details below to create a new trainer for your trainers.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <CreateTrainerForm onTrainerCreated={handleTrainerCreated} />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
     </div>

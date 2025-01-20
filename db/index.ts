@@ -6,3 +6,4 @@ import * as schema from './schema';
 export const db = drizzle(sql, {schema});
 
 export type DB = typeof db;
+console.log('Connected to DB:', process.env.DATABASE_URL);

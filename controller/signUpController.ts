@@ -3,12 +3,12 @@ import { usersTable } from "@/db/schema"
 import { eq } from "drizzle-orm"
 import bcrypt from 'bcrypt';
 
-export const signupUser = async (username: string, password: string) => {
+export const signupUser = async (email: string, password: string) => {
     const existingUser = await db
         .select()
         .from(usersTable)
         .where(
-            eq(usersTable.email, username)
+            eq(usersTable.email, email)
         )
         .limit(1);
 
@@ -18,13 +18,12 @@ export const signupUser = async (username: string, password: string) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const [newUser] = await db
-        .insert(usersTable)
-        .values({
-            email: username,
-            password: hashedPassword
-        })
-        .returning()
+    const query = db.insert(usersTable).values({
+        email,
+        password: hashedPassword,
+    });
+
+    const [newUser] = await query.returning()
 
     return {
         id: newUser.id,
