@@ -15,6 +15,18 @@ export const assignTrainerToCourse = async (courseId: number, trainerId: number)
             throw new Error('Courses not found');
         }
 
+        const existingCourseAssignement = await db
+            .select()
+            .from(courseTrainerTable)
+            .where(
+                eq(courseTrainerTable.courseId, courseId)
+            )
+            .limit(1);
+
+            if(existingCourseAssignement.length > 0){
+                throw new Error('This course is already assigned to a trainer');
+            }
+
         const existingAssignment = await db
             .select()
             .from(courseTrainerTable)

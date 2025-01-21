@@ -1,4 +1,4 @@
-import { createCourse, getCourses } from "@/controller/courseController";
+import { createCourse, deleteCourses, getCourses, getCoursesWithTrainers, updateCourses } from "@/controller/courseController";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -53,6 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             })
         }
     }
+   
     else {
         res.setHeader('Allow', ["POST", "GET"]);
         return res.status(405).json({
