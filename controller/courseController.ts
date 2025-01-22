@@ -12,6 +12,8 @@ export const getCourses = async () => {
     return courses;
 }
 
+
+
 export const updateCourses = async (courseId: number, courseData: any) => {
   try {
     const [updatedCourse] = await db

@@ -8,7 +8,9 @@ type UpdateTrainerFormProps = {
   onTrainerUpdated: () => void;
 };
 
+
 const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdated }) => {
+    
   const [formData, setFormData] = useState({
     name: trainer.name || '',
     trainingSubjects: trainer.trainingSubjects?.join(', ') || '',

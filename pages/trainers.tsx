@@ -15,6 +15,8 @@ function Trainers() {
   const [selectedTrainer, setSelectedTrainer] = useState<any | null>(null);
   const [trainers, setTrainers] = useState([]);
 
+  
+
   const fetchTrainers = async () => {
     try {
       const response = await fetch('/api/trainer');

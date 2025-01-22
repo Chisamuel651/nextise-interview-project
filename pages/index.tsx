@@ -12,6 +12,7 @@ function Home() {
     upcomingCourses: 0,
     completedCourses: 0,
   });
+  
 
   const user = "John Doe";
 

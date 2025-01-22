@@ -50,6 +50,7 @@ function Courses() {
       
     }));
   }
+  
 
   const fetchCourses = async () => {
     try {

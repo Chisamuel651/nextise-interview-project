@@ -37,6 +37,7 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
 
         try {
             const response = await fetch(`/api/course/${course.id}`, {

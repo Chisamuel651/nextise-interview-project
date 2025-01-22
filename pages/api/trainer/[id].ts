@@ -21,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           success: false,
           message: "All fields (name, trainingSubjects, location, email) must be provided.",
         });
+        
       }
 
       // Ensure trainingSubjects is an array
