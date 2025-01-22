@@ -12,6 +12,8 @@ export const getCourses = async () => {
     return courses;
 }
 
+
+
 export const updateCourses = async (courseId: number, courseData: any) => {
   try {
     const [updatedCourse] = await db
@@ -40,12 +42,12 @@ export const updateCourses = async (courseId: number, courseData: any) => {
 
 export const deleteCourses = async (courseId: number) => {
   try {
-    // Begin a transaction to ensure atomicity
+    
     await db.transaction(async (trx) => {
-      // Delete associated entries in the course-trainer table
+      
       await trx.delete(courseTrainerTable).where(eq(courseTrainerTable.courseId, courseId));
 
-      // Delete the course itself
+      
       const result = await trx.delete(coursesTable).where(eq(coursesTable.id, courseId)).returning();
 
       if (!result.length) {
