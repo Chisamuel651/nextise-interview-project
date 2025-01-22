@@ -47,6 +47,7 @@ function Courses() {
     setLoading((prev) => ({
       ...prev,
       [type]: { ...prev[type], [id]: loading },
+      
     }));
   }
 
