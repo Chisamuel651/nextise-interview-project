@@ -5,7 +5,17 @@ import { toast } from '@/hooks/use-toast';
 import React, { FC, useState } from 'react'
 
 type UpdateCourseFormProps = {
-    course: any;
+    course: {
+        id: number;
+        name: string;
+        date: string;
+        subject: string;
+        location: string;
+        participants: number;
+        notes: string;
+        price: number;
+        trainerPrice: number;
+      };
     onCourseUpdated: () => void;
 }
 
@@ -189,3 +199,20 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
 }
 
 export default UpdateCourseForm
+
+export async function getServerSideProps(context: any) {
+    const { id } = context.params;
+  
+    const response = await fetch(`https://nextise.vercel.app/api/course/${id}`);
+    const course = await response.json();
+  
+    if (!course) {
+      return {
+        notFound: true, // Render a 404 page if the course doesn't exist
+      };
+    }
+  
+    return {
+      props: { course },
+    };
+  }

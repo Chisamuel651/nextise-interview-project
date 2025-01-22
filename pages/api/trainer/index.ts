@@ -1,4 +1,4 @@
-import { createTrainer, deleteTrainers, getTrainers, updateTrainers } from "@/controller/trainerController";
+import { createTrainer, getTrainers } from "@/controller/trainerController";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -49,42 +49,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             })
         }
     }
-    // update a particular trainer
-    else if (req.method === 'PUT') {
-        try {
-            const { id, ...trainerData } = req.body;
-            if (!id) {
-                return res.status(400).json({ success: false, message: "Trainer ID is required." });
-            }
-            const result = await updateTrainers(id, trainerData);
-            return res.status(200).json(result);
-        } catch (error) {
-            console.error('Error updating the trainer: ', error);
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to update the trainer',
-            })
-        }
-    }
-    // delete a particular trainer
-    else if (req.method === 'DELETE') {
-        try {
-            const { id } = req.body;
-            if (!id) {
-                return res.status(400).json({ success: false, message: "Trainer ID is required." });
-            }
-            const result = await deleteTrainers(id);
-            return res.status(200).json(result);
-        } catch (error) {
-            console.error('Error deleting the trainer: ', error);
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to delete the trainer',
-            })
-        }
-    }
+   
     else {
-        res.setHeader('Allow', ["POST", "GET", "PUT", "DELETE"]);
+        res.setHeader('Allow', ["POST", "GET"]);
         return res.status(405).json({
             success: false,
             message: `Method ${req.method} not allowed`

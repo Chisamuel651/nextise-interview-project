@@ -3,8 +3,16 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import React, { FC, useState } from 'react';
 
+type Trainer = {
+  id: number;
+  name: string;
+  trainingSubjects: string[];
+  location: string;
+  email: string;
+};
+
 type UpdateTrainerFormProps = {
-  trainer: any;
+  trainer: Trainer;
   onTrainerUpdated: () => void;
 };
 
@@ -127,3 +135,21 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
 };
 
 export default UpdateTrainerForm;
+
+// Add this after the component
+export async function getServerSideProps(context: any) {
+  const { id } = context.params;
+
+  const response = await fetch(`https://nextise.vercel.app/api/trainer/${id}`);
+  const trainer = await response.json();
+
+  if (!trainer) {
+    return {
+      notFound: true, // Render a 404 page if the trainer doesn't exist
+    };
+  }
+
+  return {
+    props: { trainer },
+  };
+}
