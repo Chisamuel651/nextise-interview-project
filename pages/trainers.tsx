@@ -5,8 +5,8 @@ import CreateTrainerForm from "./forms/CreateTrainerForm";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import UpdateTrainerForm from "./forms/updateTrainerForm";
 import { useRouter } from "next/router";
+import UpdateTrainerForm from "./forms/UpdateTrainerForm";
 
 function Trainers() {
   const router = useRouter();
