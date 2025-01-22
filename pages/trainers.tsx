@@ -4,9 +4,15 @@ import AuthenticatedUser from "@/components/AuthenticatedUser";
 import CreateTrainerForm from "./forms/CreateTrainerForm";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
+import UpdateTrainerForm from "./forms/updateTrainerForm";
+import { useRouter } from "next/router";
 
 function Trainers() {
+  const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [selectedTrainer, setSelectedTrainer] = useState<any | null>(null);
   const [trainers, setTrainers] = useState([]);
 
   const fetchTrainers = async () => {
@@ -25,30 +31,58 @@ function Trainers() {
     }
   };
 
+  const handleDeleteTrainer = async (trainerId: number) => {
+    if (!confirm('Are you sure you want to delete this trainer?')) return;
+
+    try {
+      const response = await fetch(`/api/trainer/${trainerId}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({ title: 'Success', description: 'Trainer deleted successfully.' });
+        fetchTrainers();
+      } else {
+        toast({
+          title: 'Error',
+          description: data.message || 'Failed to delete trainer.',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'An error occurred while deleting the trainer.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   useEffect(() => {
     fetchTrainers()
   }, []);
-  // const [trainers] = useState([
-  //   {
-  //     id: "1",
-  //     trainerName: "Jane Doe",
-  //     trainerSubjects: ["React.js", "Next.js"],
-  //     trainerLocation: "Stuttgart, Germany",
-  //     trainerEmail: "jane.doe@example.com",
-  //   },
-  // ]);
 
   const user = "John Doe"; // Replace with actual user logic
 
   const handleSignOut = () => {
     // Add sign-out logic here
-    console.log("User signed out");
+    localStorage.removeItem('token');
+    document.cookie = 'token=; Max-Age=0; path=/;';
+
+    router.push('/signup');
   };
 
   const handleTrainerCreated = () => {
     setIsDialogOpen(false);
     fetchTrainers();
   }
+
+  const handleTrainerUpdated = () => {
+    setIsEditDialogOpen(false);
+    fetchTrainers();
+  };
 
   return (
     <div>
@@ -95,10 +129,37 @@ function Trainers() {
                     </a>
                   </td>
                   <td className="py-3 px-4 flex space-x-2">
-                    <button className="bg-blue-500 text-white px-3 py-1 rounded">
-                      Edit
-                    </button>
-                    <button className="bg-red-500 text-white px-3 py-1 rounded">
+                    <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                      <DialogTrigger asChild>
+                        <button
+                          className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                          onClick={() => {
+                            setSelectedTrainer(trainer);
+                            setIsEditDialogOpen(true);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px] bg-white">
+                        <DialogHeader>
+                          <DialogTitle>Edit Trainer</DialogTitle>
+                          <DialogDescription>
+                            Update the trainer details below.
+                          </DialogDescription>
+                        </DialogHeader>
+                        {selectedTrainer && (
+                          <UpdateTrainerForm
+                            trainer={selectedTrainer}
+                            onTrainerUpdated={handleTrainerUpdated}
+                          />
+                        )}
+                      </DialogContent>
+                    </Dialog>
+                    <button
+                      onClick={() => handleDeleteTrainer(trainer.id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
                       Delete
                     </button>
                   </td>

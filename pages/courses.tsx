@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import UpdateCourseForm from "./forms/UpdateCourseForm";
 import { Loader } from "lucide-react";
+import { useRouter } from "next/router";
 
 type Trainer = {
   id: number;
@@ -30,6 +31,7 @@ type Course = {
 };
 
 function Courses() {
+  const router = useRouter()
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
@@ -155,9 +157,17 @@ function Courses() {
     setSelectedTrainer((prev) => ({ ...prev, [courseId]: trainerId }));
   }
 
+  const handleSignOut = () => {
+    // Add sign-out logic here
+    localStorage.removeItem('token');
+    document.cookie = 'token=; Max-Age=0; path=/;';
+
+    router.push('/signup');
+  };
+
   return (
     <div>
-      <Header user="John Doe" onSignOut={() => { }} />
+      <Header user="John Doe" onSignOut={handleSignOut} />
       <main className="container mx-auto p-6">
         <h1 className="text-4xl font-bold mb-8">Courses</h1>
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">

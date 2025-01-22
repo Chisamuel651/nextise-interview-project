@@ -1,19 +1,19 @@
 import AuthenticatedUser from "@/components/AuthenticatedUser";
 import Header from "../components/Header";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 function Home() {
   const router = useRouter();
-  const [stats] = useState({
-    totalCourses: 5,
-    totalTrainers: 12,
-    upcomingCourses: 3,
-    completedCourses: 2,
+  const [stats, setStats] = useState({
+    totalCourses: 0,
+    totalTrainers: 0,
+    upcomingCourses: 0,
+    completedCourses: 0,
   });
 
-  const user = "John Doe"; // Replace with actual user logic
+  const user = "John Doe";
 
   const handleSignOut = () => {
     // Add sign-out logic here
@@ -22,6 +22,36 @@ function Home() {
 
     router.push('/signup');
   };
+
+  const fetchStats = async () => {
+    try {
+      const coursesResponse = await fetch("/api/course");
+      const trainersResponse = await fetch("/api/trainer");
+
+      const coursesData = await coursesResponse.json();
+      const trainersData = await trainersResponse.json();
+
+      if (coursesData.success && trainersData.success) {
+        setStats({
+          totalCourses: coursesData.data.length,
+          totalTrainers: trainersData.data.length,
+          upcomingCourses: 0, // Add logic for upcomingCourses if applicable
+          completedCourses: 0, // Add logic for completedCourses if applicable
+        });
+      } else {
+        console.error("Failed to fetch stats:", {
+          courses: coursesData.message,
+          trainers: trainersData.message,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
 
   return (
     <div>
