@@ -57,7 +57,7 @@ const CreateTrainerForm = ({ onTrainerCreated }: { onTrainerCreated: () => void 
         <div>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <Label htmlFor="name" className="block text-sm font-medium">
+                    <Label htmlFor="name" className="block text-lg font-bold">
                         Trainer Name
                     </Label>
                     <Input
@@ -67,11 +67,11 @@ const CreateTrainerForm = ({ onTrainerCreated }: { onTrainerCreated: () => void 
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="training_subjects" className="block text-sm font-medium">
+                    <Label htmlFor="training_subjects" className="block text-lg font-bold">
                         Training Subjects
                     </Label>
                     <Input
@@ -81,11 +81,11 @@ const CreateTrainerForm = ({ onTrainerCreated }: { onTrainerCreated: () => void 
                         value={formData.trainingSubjects}
                         onChange={handleInputChange}
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="location" className="block text-sm font-medium">
+                    <Label htmlFor="location" className="block text-lg font-bold">
                         Location
                     </Label>
                     <Input
@@ -95,11 +95,11 @@ const CreateTrainerForm = ({ onTrainerCreated }: { onTrainerCreated: () => void 
                         value={formData.location}
                         onChange={handleInputChange}
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="email" className="block text-sm font-medium">
+                    <Label htmlFor="email" className="block text-lg font-bold">
                         Trainer Email
                     </Label>
                     <Input
@@ -108,7 +108,7 @@ const CreateTrainerForm = ({ onTrainerCreated }: { onTrainerCreated: () => void 
                         id="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <button

@@ -186,12 +186,12 @@ function Courses() {
           <tbody>
             {Array.isArray(courses) && courses.map((course: any) => (
               <tr key={course.id}>
-                <td className="py-3 px-4 border-b">{course.name}</td>
-                <td className="py-3 px-4 border-b">{course.date}</td>
-                <td className="py-3 px-4 border-b">{course.subject}</td>
-                <td className="py-3 px-4 border-b">{course.location}</td>
+                <td className="py-3 px-4 border-b text-blak font-bold text-lg">{course.name}</td>
+                <td className="py-3 px-4 border-b text-blak font-bold text-lg">{course.date}</td>
+                <td className="py-3 px-4 border-b text-blak font-bold text-lg">{course.subject}</td>
+                <td className="py-3 px-4 border-b text-blak font-bold text-lg">{course.location}</td>
 
-                <td className="py-3 px-4 border-b">
+                <td className="py-3 px-4 border-b text-blak font-bold text-lg">
                   {course.trainer && course.trainer.name ? (
                     <div>
                       <div>
@@ -203,7 +203,7 @@ function Courses() {
                     <span>No trainer assigned</span>
                   )}
                 </td>
-                <td className="py-3 px-4 border-b flex space-x-2">
+                <td className="py-3 px-4 border-b flex space-x-2 text-blak font-bold text-lg">
                   <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
                     <DialogTrigger asChild>
                       <button

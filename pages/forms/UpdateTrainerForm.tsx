@@ -77,7 +77,7 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="name" className="block text-sm font-medium">
+        <Label htmlFor="name" className="block text-lg font-bold">
           Trainer Name
         </Label>
         <Input
@@ -85,11 +85,11 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
           id="name"
           value={formData.name}
           onChange={handleInputChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
         />
       </div>
       <div>
-        <Label htmlFor="trainingSubjects" className="block text-sm font-medium">
+        <Label htmlFor="trainingSubjects" className="block text-lg font-bold">
           Training Subjects (comma-separated)
         </Label>
         <Input
@@ -97,11 +97,11 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
           id="trainingSubjects"
           value={formData.trainingSubjects}
           onChange={handleInputChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
         />
       </div>
       <div>
-        <Label htmlFor="location" className="block text-sm font-medium">
+        <Label htmlFor="location" className="block text-lg font-bold">
           Location
         </Label>
         <Input
@@ -109,11 +109,11 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
           id="location"
           value={formData.location}
           onChange={handleInputChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
         />
       </div>
       <div>
-        <Label htmlFor="email" className="block text-sm font-medium">
+        <Label htmlFor="email" className="block text-lg font-bold">
           Email
         </Label>
         <Input
@@ -121,7 +121,7 @@ const UpdateTrainerForm: FC<UpdateTrainerFormProps> = ({ trainer, onTrainerUpdat
           id="email"
           value={formData.email}
           onChange={handleInputChange}
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
         />
       </div>
       <button

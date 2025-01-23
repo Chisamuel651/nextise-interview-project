@@ -115,14 +115,14 @@ function Trainers() {
             <tbody>
               {trainers.map((trainer: any) => (
                 <tr key={trainer.id} className="border-b">
-                  <td className="py-3 px-4">{trainer.name}</td>
-                  <td className="py-3 px-4">
+                  <td className="py-3 px-4 text-blak font-bold text-lg">{trainer.name}</td>
+                  <td className="py-3 px-4 text-blak font-bold text-lg">
                     {trainer.trainingSubjects && Array.isArray(trainer.trainingSubjects)
                       ? trainer.trainingSubjects.join(", ")
                       : "No subjects"}
                   </td>
-                  <td className="py-3 px-4">{trainer.location}</td>
-                  <td className="py-3 px-4">
+                  <td className="py-3 px-4 text-blak font-bold text-lg">{trainer.location}</td>
+                  <td className="py-3 px-4 text-blak font-bold text-lg">
                     <a
                       href={`mailto:${trainer.email}`}
                       className="text-blue-500 hover:underline"
@@ -130,7 +130,7 @@ function Trainers() {
                       {trainer.email}
                     </a>
                   </td>
-                  <td className="py-3 px-4 flex space-x-2">
+                  <td className="py-3 px-4 flex space-x-2 text-blak font-bold text-lg">
                     <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
                       <DialogTrigger asChild>
                         <button

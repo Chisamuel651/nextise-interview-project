@@ -85,7 +85,7 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
         <div>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <Label htmlFor="name" className="block text-sm font-medium">
+                    <Label htmlFor="name" className="block text-lg font-bold">
                         Course Name
                     </Label>
                     <Input
@@ -94,11 +94,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="date" className="block text-sm font-medium">
+                    <Label htmlFor="date" className="block text-lg font-bold">
                         Date
                     </Label>
                     <Input
@@ -107,11 +107,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="date"
                         value={formData.date}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="subject" className="block text-sm font-medium">
+                    <Label htmlFor="subject" className="block text-lg font-bold">
                         Subject
                     </Label>
                     <Input
@@ -120,11 +120,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="location" className="block text-sm font-medium">
+                    <Label htmlFor="location" className="block text-lg font-bold">
                         Location
                     </Label>
                     <Input
@@ -133,11 +133,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="location"
                         value={formData.location}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="participants" className="block text-sm font-medium">
+                    <Label htmlFor="participants" className="block text-lg font-bold">
                         Participants
                     </Label>
                     <Input
@@ -146,11 +146,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="participants"
                         value={formData.participants}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="notes" className="block text-sm font-medium">
+                    <Label htmlFor="notes" className="block text-lg font-bold">
                         Notes
                     </Label>
                     <Textarea
@@ -158,11 +158,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="notes"
                         value={formData.notes}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     ></Textarea>
                 </div>
                 <div>
-                    <Label htmlFor="price" className="block text-sm font-medium">
+                    <Label htmlFor="price" className="block text-lg font-bold">
                         Price
                     </Label>
                     <Input
@@ -171,11 +171,11 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="price"
                         value={formData.price}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <div>
-                    <Label htmlFor="trainerPrice" className="block text-sm font-medium">
+                    <Label htmlFor="trainerPrice" className="block text-lg font-bold">
                         Trainer Price
                     </Label>
                     <Input
@@ -184,7 +184,7 @@ const UpdateCourseForm: FC<UpdateCourseFormProps> = ({
                         id="trainerPrice"
                         value={formData.trainerPrice}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-blak font-bold text-lg"
                     />
                 </div>
                 <button
