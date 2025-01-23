@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgres://neondb_owner:qGt3rSBmRs1Y@db:5432/neondb?sslmode=require"
+      JWT_SECRET: "Some123one45@@@@" # Make sure this matches your `.env` file
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: npm run dev # Adjust to your actual start command
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: neondb_owner
+      POSTGRES_PASSWORD: qGt3rSBmRs1Y
+      POSTGRES_DB: neondb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  postgres_data:

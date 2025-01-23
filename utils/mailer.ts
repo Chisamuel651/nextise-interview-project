@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 
 export const sendTrainerAssignmentEmail = async (trainerEmail: string, courseDetails: any) => {
     const transporter = nodemailer.createTransport({
-        host: 'localhost',
+        host: 'mailhog',
         port: 1025,
         secure: false,
     });

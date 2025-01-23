@@ -24,7 +24,7 @@ export const assignTrainerToCourse = async (courseId: number, trainerId: number)
             .limit(1);
 
             if(existingCourseAssignement.length > 0){
-                throw new Error('This course is already assigned to a trainer');
+                throw new Error('This course is already assigned to a trainer or the Trainer already has a course planned for this day');
             }
 
         const existingAssignment = await db
